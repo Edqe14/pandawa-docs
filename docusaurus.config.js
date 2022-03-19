@@ -9,7 +9,7 @@ const config = {
   title: 'Pandawa',
   tagline: 'An Extensive and Modular Laravel Framework',
   url: 'https://pandawa.com',
-  baseUrl: '/',
+  baseUrl: '/pandawa-docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
