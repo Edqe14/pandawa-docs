@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpandawa_docs=self.webpackChunkpandawa_docs||[]).push([[517],{722:function(a){a.exports=JSON.parse('{"permalink":"/pandawa-docs/blog","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"previousPage":null,"nextPage":null,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
