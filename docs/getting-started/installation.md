@@ -45,3 +45,11 @@ Please make sure you've...
   ```
 
 4. Try to re-run the thing you're trying to do before.
+
+### Error Fideloper's TrustProxies not found
+
+![Fideloper TrustProxy](/img/tutorial/fideloper_trustproxy_not_found.png)
+
+You need to change `TrustProxies` in `app/laravel/Http/Middleware/TrustProxies.php` as part of Laravel 9 migration process.
+
+Just replace `Fideloper\Proxy\TrustProxies` to `Illuminate\Http\Middleware\TrustProxies`

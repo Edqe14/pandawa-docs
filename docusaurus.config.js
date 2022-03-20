@@ -93,7 +93,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Edqe14. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Edqe14.\nNot affiliated with the Pandawa Team or any related contributors to this software.\n\nBuilt with Docusaurus.`.replace(/\n/gi, '<br>'),
       },
       prism: {
         theme: lightCodeTheme,
