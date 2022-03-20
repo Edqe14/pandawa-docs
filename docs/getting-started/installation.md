@@ -16,6 +16,12 @@ Here, you will learn how to install Pandawa and its glory!
 
 4. You're set!
 
+:::tip
+
+If you need a demo app that is built with Pandawa, you could check [`blog-demo`](https://github.com/arifsetianto/blog-demo) repository for an overview of Pandawa's structure, concepts and usage.
+
+:::
+
 ## Manual
 
 TBA

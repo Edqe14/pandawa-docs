@@ -6,6 +6,8 @@ sidebar_position: 4
 
 Pandawa CLI is extension to the `artisan` command from Laravel. You could view the list by running `php artisan`.
 
+![CLI View](/img/tutorial/pandawa_cli.png)
+
 ## Specification
 
 Below is list of general specification for Pandawa CLI.
