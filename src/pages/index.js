@@ -29,7 +29,7 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Pandawa::${siteConfig.title}`}
+      title={siteConfig.title}
       description="Just a documentation">
       <HomepageHeader />
       <main>
