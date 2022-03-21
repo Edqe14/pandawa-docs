@@ -33,9 +33,9 @@ use Pandawa\Component\Ddd\RelationshipBehaviorTrait;
 
 // highlight-next-line
 trait BelongsTo<Who> {
-    use RelationshipBehaviorTrait;
+  use RelationshipBehaviorTrait;
 
-    //->
+  //->
 }
 ```
 
@@ -50,7 +50,7 @@ Go to the model you want to apply the relationship to and use the relation trait
 ```php
 // ...
 class Post extends AbstractModel {
-    use BelongsToUser;
+  use BelongsToUser;
 }
 ```
 

@@ -2,6 +2,70 @@
 sidebar_position: 6
 ---
 
+import Template from '@site/src/components/Markdown/template.js';
+import ReadMoreCLI from '@site/src/components/Markdown/readMore/cli.js';
+import ReadMore from '@site/src/components/Markdown/readMore';
+import Example from '@site/src/components/Markdown/example.js';
+
 # Service
 
-TBA
+In Pandawa, service is used to handle the implemetation of each operation as a service. This is usually used with [Command](./message#command) or [Query](./message#query).
+
+## Generating a new service
+
+As for the current time, you need to manually make a new service.
+
+<ReadMoreCLI />
+
+<Template>
+
+```php
+<?php
+
+declare(strict_types=1);
+
+// highlight-next-line
+namespace <Namespace>\<Folder>\Service;
+
+use Pandawa\Component\Ddd\AbstractModel;
+
+// highlight-next-line
+final class <Name>
+{
+    public function __construct() {}
+
+    //->
+}
+```
+
+</Template>
+
+<Example dropDown>
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Pandawa\Product\Service;
+
+use Pandawa\Product\Command\CreateProduct;
+use Pandawa\Product\Model\Product;
+use Pandawa\Product\Repository\ProductRepository;
+
+final class ProductCreator {
+  public function __construct(private ProductRepository $repository) {}
+
+  public function create(CreateProduct $create): Product {
+    $product = new Product($create->origin()->all());
+
+    return $this->repository->save($product);
+  }
+}
+```
+
+<ReadMore label="Repository" url="./repository" inline />
+<br />
+<ReadMore label="Command" url="./message#command" inline />
+
+</Example>

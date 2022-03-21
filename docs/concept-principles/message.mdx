@@ -3,6 +3,7 @@ sidebar_position: 5
 ---
 
 import Template from '@site/src/components/Markdown/template.js';
+import ReadMore from '@site/src/components/Markdown/readMore';
 import ReadMoreCLI from '@site/src/components/Markdown/readMore/cli.js';
 import Example from '@site/src/components/Markdown/example.js';
 
@@ -39,12 +40,12 @@ use Pandawa\Component\Message\NameableMessageInterface;
 use Pandawa\Component\Support\NameableClassTrait;
 
 final class <Name> extends AbstractCommand implements NameableMessageInterface {
-    use NameableClassTrait;
+  use NameableClassTrait;
 
-    // Define property with the same name to let Pandawa fill it with the request data.
-    // protected string data;
+  // Define property with the same name to let Pandawa fill it with the request data.
+  // protected string data;
 
-    //->
+  //->
 }
 ```
 
@@ -70,12 +71,12 @@ namespace <Namespace>\<Folder>\Command;
 
 // highlight-next-line
 final class <Command>Handler {
-    public function __construct() {}
+  public function __construct() {}
 
-    // highlight-next-line
-    public function handle(<Command> $message) {
-        //->
-    }
+  // highlight-next-line
+  public function handle(<Command> $message) {
+      //->
+  }
 }
 ```
 
@@ -94,15 +95,15 @@ namespace Pandawa\Product\Command;
 use Pandawa\Product\Service\ProductCreator;
 
 final class CreateProductHandler {
-    public function __construct(private ProductCreator $creator) {}
+  public function __construct(private ProductCreator $creator) {}
 
-    public function handle(CreateProduct $message) {
-        return $this->creator->create($message);
-    }
+  public function handle(CreateProduct $message) {
+    return $this->creator->create($message);
+  }
 }
 ```
 
-*Read more about Service [here](./service)*
+<ReadMore label="Service" url="./service" inline />
 
 </Example>
 
@@ -135,9 +136,9 @@ use Pandawa\Component\Support\NameableClassTrait;
 
 // highlight-next-line
 final class <Name> extends AbstractQuery implements NameableMessageInterface {
-    use NameableClassTrait;
+  use NameableClassTrait;
 
-    //->
+  //->
 }
 ```
 
@@ -163,23 +164,23 @@ use Pandawa\Component\Message\InteractsWithRepositoryTrait;
 
 // highlight-next-line
 final class <Query>Handler {
-    use InteractsWithRepositoryTrait;
+  use InteractsWithRepositoryTrait;
 
-    // highlight-next-line
-    public function __construct(private <Repository> $repository) {}
+  // highlight-next-line
+  public function __construct(private <Repository> $repository) {}
 
-    // highlight-next-line
-    protected function run(<Repository> $repository, <Query> $query) {
-        //->
-    }
+  // highlight-next-line
+  protected function run(<Repository> $repository, <Query> $query) {
+    //->
+  }
 
-    protected function repository() {
-        return $this->repository;
-    }
+  protected function repository() {
+    return $this->repository;
+  }
 }
 ```
 
-*Read more about Repository [here](./repository)*
+<ReadMore label="Repository" url="./repository" inline />
 
 </Template>
 
@@ -197,17 +198,17 @@ use Pandawa\Component\Message\InteractsWithRepositoryTrait;
 use Pandawa\Product\Repository\ProductRepository;
 
 final class GetAvailableProductsHandler {
-    use InteractsWithRepositoryTrait;
+  use InteractsWithRepositoryTrait;
 
-    public function __construct(private ProductRepository $repository) {}
+  public function __construct(private ProductRepository $repository) {}
 
-    protected function run($repository, $query) {
-        return $repository->getAvailable();
-    }
+  protected function run($repository, $query) {
+    return $repository->getAvailable();
+  }
 
-    protected function repository() {
-        return $this->repository;
-    }
+  protected function repository() {
+    return $this->repository;
+  }
 }
 ```
 
@@ -218,15 +219,15 @@ final class GetAvailableProductsHandler {
 // ...
 
 final class ProductRepository extends Repository {
-    public function getAvailable() {
-        $qb = $this->createQueryBuilder();
-        $qb->where('status', 'published')->where('stock', '>', 0);
+  public function getAvailable() {
+    $qb = $this->createQueryBuilder();
+    $qb->where('status', 'published')->where('stock', '>', 0);
 
-        return $this->execute($qb);
-    }
+    return $this->execute($qb);
+  }
 }
 ```
 
-*Read more about Repository [here](./repository)*
+<ReadMore label="Repository" url="./repository" inline />
 
 </Example>

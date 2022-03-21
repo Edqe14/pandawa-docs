@@ -14,7 +14,7 @@ A module is, well, the core of a module. All you need pretty much is to generate
 
 You could run `php artisan pandawa:make:module` to generate a base module.
 
-<ReadMoreCLI url="/docs/getting-started/cli" label="CLI" />
+<ReadMoreCLI />
 
 Or, use the namespace at `Pandawa\Component\Module\AbstractModule`.
 
@@ -32,7 +32,7 @@ use Pandawa\Component\Module\AbstractModule;
 
 // highlight-next-line
 final class <Name>Module extends AbstractModule {
-    //->
+  //->
 }
 ```
 
@@ -48,8 +48,8 @@ You need to first locate `config/packages.php` and add the newly created module 
 <?php
 
 return [
-    // ...
-    Blog\Post\BlogPostModule::class,
+  // ...
+  Blog\Post\BlogPostModule::class,
 ];
 ```
 
