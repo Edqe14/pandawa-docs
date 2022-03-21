@@ -1,0 +1,233 @@
+---
+sidebar_position: 5
+---
+
+import Template from '@site/src/components/Markdown/template.js';
+import ReadMore from '@site/src/components/Markdown/readMore.js';
+import Example from '@site/src/components/Markdown/example.js';
+
+# Message
+
+Message in Pandawa is basically a micro-controller for processing route request. There is 2 key message type for different purposes. Each type of message requires a handler to handle the request.
+
+## Command
+
+Command is a type of message for manipulating data *(storing or updating dabase)* or process a request.
+
+To let Pandawa fill the command with request data, you need to declare the properties with the exact same name or call the `origin` method.
+
+### Generating a new command
+
+You could run `php artisan pandawa:make:command` to generate a base model.
+
+<ReadMore url="/docs/getting-started/cli" label="CLI" />
+
+Or, use the namespace at `Pandawa\Component\Message\AbstractCommand`.
+
+<Template>
+
+```php
+<?php
+
+declare(strict_types=1);
+
+// highlight-next-line
+namespace <Namespace>\<Folder>\Command;
+
+use Pandawa\Component\Message\AbstractCommand;
+use Pandawa\Component\Message\NameableMessageInterface;
+use Pandawa\Component\Support\NameableClassTrait;
+
+final class <Name> extends AbstractCommand implements NameableMessageInterface {
+    use NameableClassTrait;
+
+    // Define property with the same name to let Pandawa fill it with the request data.
+    // protected string data;
+
+    //->
+}
+```
+
+</Template>
+
+### Generating a new command handler
+
+You could run `php artisan pandawa:make:command-handler` to generate a base command handler.
+
+<ReadMore url="/docs/getting-started/cli" label="CLI" />
+
+Or, use the namespace at `Pandawa\Component\Message\AbstractCommand`.
+
+<Template>
+
+```php
+<?php
+
+declare(strict_types=1);
+
+// highlight-next-line
+namespace <Namespace>\<Folder>\Command;
+
+// highlight-next-line
+final class <Command>Handler {
+    public function __construct() {}
+
+    // highlight-next-line
+    public function handle(<Command> $message) {
+        //->
+    }
+}
+```
+
+</Template>
+
+<Example dropDown>
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace Pandawa\Product\Command;
+
+// Service
+// Read more at `/docs/concept-principles/service`
+use Pandawa\Product\Service\ProductCreator;
+
+final class CreateProductHandler {
+    public function __construct(private ProductCreator $creator) {}
+
+    public function handle(CreateProduct $message) {
+        return $this->creator->create($message);
+    }
+}
+```
+
+*Read more about Service [here](/docs/concept-principles/service)*
+
+</Example>
+
+## Query
+
+Query is like a [Command](#command) but only for showing data. It works relatively exactly the same as a command
+
+### Generating a new query
+
+You could run `php artisan pandawa:make:query` to generate a base query.
+
+<ReadMore url="/docs/getting-started/cli" label="CLI" />
+
+Or, use the namespace at `Pandawa\Component\Message\AbstractQuery`.
+
+<Template>
+
+```php
+<?php
+
+<?php
+declare(strict_types=1);
+
+// highlight-next-line
+namespace <Namespace>\<Folder>\Query;
+
+use Pandawa\Component\Message\AbstractQuery;
+use Pandawa\Component\Message\NameableMessageInterface;
+use Pandawa\Component\Support\NameableClassTrait;
+
+// highlight-next-line
+final class <Name> extends AbstractQuery implements NameableMessageInterface {
+    use NameableClassTrait;
+
+    //->
+}
+```
+
+</Template>
+
+### Generating a new query handler
+
+You could run `php artisan pandawa:make:query-handler` to generate a base query handler.
+
+<ReadMore url="/docs/getting-started/cli" label="CLI" />
+
+<Template>
+
+```php
+<?php
+
+declare(strict_types=1);
+
+// highlight-next-line
+namespace <Namespace>\<Folder>\Query;
+
+use Pandawa\Component\Message\InteractsWithRepositoryTrait;
+
+// highlight-next-line
+final class <Query>Handler {
+    use InteractsWithRepositoryTrait;
+
+    // highlight-next-line
+    public function __construct(private <Repository> $repository) {}
+
+    // highlight-next-line
+    protected function run(<Repository> $repository, <Query> $query) {
+        //->
+    }
+
+    protected function repository() {
+        return $this->repository;
+    }
+}
+```
+
+*Read more about Repository [here](/docs/concept-principles/repository)*
+
+</Template>
+
+<Example dropDown>
+
+```php
+<?php
+// GetAvailableProductsHandler.php
+
+declare(strict_types=1);
+
+namespace Pandawa\Product\Query;
+
+use Pandawa\Component\Message\InteractsWithRepositoryTrait;
+use Pandawa\Product\Repository\ProductRepository;
+
+final class GetAvailableProductsHandler {
+    use InteractsWithRepositoryTrait;
+
+    public function __construct(private ProductRepository $repository) {}
+
+    protected function run($repository, $query) {
+        return $repository->getAvailable();
+    }
+
+    protected function repository() {
+        return $this->repository;
+    }
+}
+```
+
+```php
+<?php
+// ProductRepository.php
+
+// ...
+
+final class ProductRepository extends Repository {
+    public function getAvailable() {
+        $qb = $this->createQueryBuilder();
+        $qb->where('status', 'published')->where('stock', '>', 0);
+
+        return $this->execute($qb);
+    }
+}
+```
+
+*Read more about Repository [here](/docs/concept-principles/repository)*
+
+</Example>

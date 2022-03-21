@@ -1,0 +1,169 @@
+---
+sidebar_position: 4
+---
+
+import Example from '@site/src/components/Markdown/example.js';
+
+# Routes
+
+By design, Pandawa takes care most of the handling of any routes. It leverages the route configuration using YAML files to simplify the creation of a route, for example:
+
+```yaml
+# Api/Resources/routes/routes.yaml
+products:
+  type: group
+  children: _product.yaml
+
+# Api/Resources/routes/_product.yaml
+products:
+  type: resource
+  path: products
+  rules: [manage_product]
+```
+
+## Types
+
+There is some core types for different purposes to define a route.
+
+### `group`
+
+This type is self-explanatory, it groups different routes together. This type usually is used for a specific route group or route children.
+
+<Example>
+
+```yaml
+products:
+  type: group
+  children: _product.yaml
+```
+
+</Example>
+
+### `resource`
+
+This acts the same like Laravel's resource controller. You don't have to write your implementation yourself since Pandawa already did the hard-lifting.
+
+<Example>
+
+```yaml
+products:
+  type: resource
+  path: products
+```
+
+</Example>
+
+### `message`
+
+This one is little bit complex and different from the rest. This type will refer an handler *(command/query/etc.)* and invoke it.
+
+<Example>
+
+```yaml
+create_product:
+  type: message
+  message: create-product
+  path: products
+  methods: [post]
+```
+
+</Example>
+
+**[Read more](/docs/concept-principles/message)**
+
+### `presenter`
+
+As for this one, it's the same as route handler you usually do in vanilla Laravel. You'll have to manually write the route implementation and things. It's all in your hand...
+
+<Example>
+
+```yaml
+product_image:
+  type: presenter
+  presenter: image
+  path: products/{product}/image
+  methods: [get]
+```
+
+</Example>
+
+## Validation
+
+Declaring a rule is easy as smashing a cardboard wall 😃
+
+### Declaring a rule
+
+1. Make a YAML file in `Resources/rules` of any folder inside your app `src`.
+2. Using the following template, feel free to fill it to your use-case.
+
+  ```yaml
+  rule_name:
+    constraints:
+      key: "required|string"
+      key2: "required|integer"
+  ```
+
+  Constraints values are the same as Laravel's validation types. This doesn't only apply to the request body but also includes URL parameter, query, etc.
+
+### Using the rule
+
+All you need to add a single line to your route configuration
+
+```yaml
+rules: [rule_name]
+```
+
+<Example>
+
+```yaml
+create_product:
+  type: message
+  message: create-product
+  path: products
+  methods: [post]
+  # highlight-next-line
+  rules: [manage_product]
+```
+
+</Example>
+
+## Middleware
+
+Using middlewares in Pandawa is also a piece of cake. All you need to do is make the middleware implementation exactly the same as vanilla Laravel middleware and register it at `app/laravel/Http/Kernel.php`, in the `$routeMiddleware` option.
+
+<Example>
+
+```php
+// app/laravel/Http/Kernel.php
+
+// ...
+protected $routeMiddleware = [
+    // ...
+    'roles.has'   => \Pandawa\Api\Http\Middleware\HasRole::class,
+];
+```
+
+</Example>
+
+### Using the middleware
+
+All you need to add a single line to your route configuration like [rules](#using-the-rule)
+
+```yaml
+middlewares: [middleware_name]
+```
+
+<Example>
+
+```yaml
+create_product:
+  type: message
+  message: create-product
+  path: products
+  methods: [post]
+  rules: [manage_product]
+  # highlight-next-line
+  middlewares: ["roles.has:admin"]
+```
+
+</Example>

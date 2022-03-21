@@ -1,6 +1,9 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 ---
+
+import Template from '@site/src/components/Markdown/template.js';
+import ReadMore from '@site/src/components/Markdown/readMore.js';
 
 # Models
 
@@ -10,34 +13,29 @@ For ORM using Pandawa, we use Pandawa's `AbstractModel` instead of Laravel's `Mo
 
 You could run `php artisan pandawa:make:model` to generate a base model.
 
-:::info
-Read more about [CLI](/docs/getting-started/cli).
-:::
+<ReadMore url="/docs/getting-started/cli" label="CLI" />
 
 Or, use the namespace at `Pandawa\Component\Ddd\AbstractModel`.
 
-<details>
-  <summary>Template</summary>
+<Template>
 
-  Replace the things encapsulated with `<>` including itself as well.
+```php
+<?php
 
-  ```php
-  <?php
+declare(strict_types=1);
 
-  declare(strict_types=1);
+// highlight-next-line
+namespace <Namespace>\<Folder>\Model;
 
-  // highlight-next-line
-  namespace <Namespace>\<Folder>\Model;
+use Pandawa\Component\Ddd\AbstractModel;
 
-  use Pandawa\Component\Ddd\AbstractModel;
+// highlight-next-line
+class <Name> extends AbstractModel {
+    //->
+}
+```
 
-  // highlight-next-line
-  class <Name> extends AbstractModel
-  {
-      //->
-  }
-  ```
-</details>
+</Template>
 
 ## Key Differences
 

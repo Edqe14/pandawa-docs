@@ -1,0 +1,40 @@
+---
+sidebar_position: 3
+---
+
+import Template from '@site/src/components/Markdown/template.js';
+import ReadMore from '@site/src/components/Markdown/readMore.js';
+import Example from '@site/src/components/Markdown/example.js';
+
+# Repository
+
+Repository in Pandawa is like an controller for models. This controls from saving and deleting data, fetching data, building a query and executing it, etc.
+
+## Generating a new repository
+
+You could run `php artisan pandawa:make:repo` to generate a base repository.
+
+<ReadMore url="/docs/getting-started/cli" label="CLI" />
+
+Or, use the namespace at `Pandawa\Component\Ddd\Repository\Repository`.
+
+<Template>
+
+```php
+<?php
+
+declare(strict_types=1);
+
+// highlight-next-line
+namespace <Namespace>\<Folder>\Repository;
+
+use Pandawa\Component\Ddd\Collection;
+use Pandawa\Component\Ddd\Repository\Repository;
+
+// highlight-next-line
+class <What>Repository extends Repository {
+    //->
+}
+```
+
+</Template>

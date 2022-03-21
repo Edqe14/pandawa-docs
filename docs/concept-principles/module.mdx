@@ -1,0 +1,56 @@
+---
+sidebar_position: 1
+---
+
+import Template from '@site/src/components/Markdown/template.js';
+import ReadMore from '@site/src/components/Markdown/readMore.js';
+import Example from '@site/src/components/Markdown/example.js';
+
+# Module
+
+A module is, well, the core of a module. All you need pretty much is to generate a base model and register it.
+
+## Generating a new model
+
+You could run `php artisan pandawa:make:module` to generate a base module.
+
+<ReadMore url="/docs/getting-started/cli" label="CLI" />
+
+Or, use the namespace at `Pandawa\Component\Module\AbstractModule`.
+
+<Template>
+
+```php
+<?php
+
+declare(strict_types=1);
+
+// highlight-next-line
+namespace <Namespace>\<Folder>;
+
+use Pandawa\Component\Module\AbstractModule;
+
+// highlight-next-line
+final class <Name>Module extends AbstractModule {
+    //->
+}
+```
+
+</Template>
+
+## Registring a module
+
+You need to first locate `config/packages.php` and add the newly created module to the list.
+
+<Example>
+
+```php
+<?php
+
+return [
+    // ...
+    Blog\Post\BlogPostModule::class,
+];
+```
+
+</Example>
