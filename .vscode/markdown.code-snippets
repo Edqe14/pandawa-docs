@@ -18,7 +18,7 @@
 	"Read more about CLI": {
     "prefix": "cli",
     "body": [
-      "<ReadMore url=\"/docs/getting-started/cli\" label=\"CLI\" />"
+      "<ReadMoreCLI />"
     ]
   },
   "Example Block": {

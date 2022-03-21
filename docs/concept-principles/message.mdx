@@ -3,7 +3,7 @@ sidebar_position: 5
 ---
 
 import Template from '@site/src/components/Markdown/template.js';
-import ReadMore from '@site/src/components/Markdown/readMore.js';
+import ReadMoreCLI from '@site/src/components/Markdown/readMore/cli.js';
 import Example from '@site/src/components/Markdown/example.js';
 
 # Message
@@ -20,7 +20,7 @@ To let Pandawa fill the command with request data, you need to declare the prope
 
 You could run `php artisan pandawa:make:command` to generate a base model.
 
-<ReadMore url="/docs/getting-started/cli" label="CLI" />
+<ReadMoreCLI />
 
 Or, use the namespace at `Pandawa\Component\Message\AbstractCommand`.
 
@@ -54,7 +54,7 @@ final class <Name> extends AbstractCommand implements NameableMessageInterface {
 
 You could run `php artisan pandawa:make:command-handler` to generate a base command handler.
 
-<ReadMore url="/docs/getting-started/cli" label="CLI" />
+<ReadMoreCLI />
 
 Or, use the namespace at `Pandawa\Component\Message\AbstractCommand`.
 
@@ -114,7 +114,7 @@ Query is like a [Command](#command) but only for showing data. It works relative
 
 You could run `php artisan pandawa:make:query` to generate a base query.
 
-<ReadMore url="/docs/getting-started/cli" label="CLI" />
+<ReadMoreCLI />
 
 Or, use the namespace at `Pandawa\Component\Message\AbstractQuery`.
 
@@ -147,7 +147,7 @@ final class <Name> extends AbstractQuery implements NameableMessageInterface {
 
 You could run `php artisan pandawa:make:query-handler` to generate a base query handler.
 
-<ReadMore url="/docs/getting-started/cli" label="CLI" />
+<ReadMoreCLI />
 
 <Template>
 
