@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkpandawa_docs=self.webpackChunkpandawa_docs||[]).push([[577],{1194:function(a){a.exports=JSON.parse('{"allTagsPath":"/pandawa-docs/blog/tags","slug":"/pandawa-docs/blog/tags/docusaurus","name":"docusaurus","count":4,"permalink":"/pandawa-docs/blog/tags/docusaurus"}')}}]);
