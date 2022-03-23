@@ -4,6 +4,9 @@ sidebar_position: 1
 
 # Installation
 
+import Image from '@theme/IdealImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 Here, you will learn how to install Pandawa and its glory!
 
 ## Using a skeleton project
@@ -12,7 +15,7 @@ Here, you will learn how to install Pandawa and its glory!
 2. Install vendor dependencies using `composer install`
 3. Verify the installation and run `php artisan` to list all commands, you should see some pandawa commands available. 
 
-  ![CLI View](/img/tutorial/pandawa_cli.png)
+  <Image img={useBaseUrl('/img/tutorial/pandawa_cli.png')} alt='CLI View' />
 
 4. You're set!
 
@@ -42,7 +45,7 @@ Please make sure you've...
 1. Open your `php.ini` file in your php installation directory with your favorite text editor.
 2. Find a collection of extension like on the image below
 
-  ![php.ini](/img/tutorial/php_ini_extensions.png)
+  <Image img={useBaseUrl('/img/tutorial/php_ini_extensions.png')} alt='php.ini' />
 
 3. Add this line to your configuration file
 
@@ -54,7 +57,8 @@ Please make sure you've...
 
 ### Error Fideloper's TrustProxies not found
 
-![Fideloper TrustProxy](/img/tutorial/fideloper_trustproxy_not_found.png)
+<Image img={useBaseUrl('/img/tutorial/fideloper_trustproxy_not_found.png')} alt='Fideloper TrustProxy' />
+
 
 You need to change `TrustProxies` in `app/laravel/Http/Middleware/TrustProxies.php` as part of Laravel 9 migration process.
 

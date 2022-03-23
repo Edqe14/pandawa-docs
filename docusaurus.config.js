@@ -150,6 +150,16 @@ const config = {
             { tagName: 'link', rel: 'icon', sizes: '16x16', href: '/img/icons/favicon-16x16.png' }
           ],
         }
+      ],
+      [
+        '@docusaurus/plugin-ideal-image',
+        {
+          quality: 75,
+          max: 1280, // max resized image's size.
+          min: 640, // min resized image's size. if original is lower, use that size.
+          steps: 4, // the max number of images generated between min and max (inclusive)
+          disableInDev: false,
+        },
       ]
     ])
 };
